@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.16
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "MasterMindGame", "MasterMindGame\MasterMindGame.pyproj", "{2CB29E30-F6D8-415E-9279-662AFBC481B3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2CB29E30-F6D8-415E-9279-662AFBC481B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CB29E30-F6D8-415E-9279-662AFBC481B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {01D07354-C05C-4040-B5BF-56DE9DED3311}
+	EndGlobalSection
+EndGlobal
