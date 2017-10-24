@@ -7,7 +7,7 @@ possibleCodes = [('r', 'r', 'r'), ('r', 'r', 'w'), ('r', 'r', 'b'), ('r', 'r', '
 def parseRes(res):
     numX = 0
     numO = 0
-    print("In Parse")
+    ## print("In Parse")
     for item in res:
         if item == 'x' or item == 'X':
             numX = numX + 1
@@ -17,7 +17,7 @@ def parseRes(res):
 
 
 def blank(code,currentCodes):
-    print("Nothing Returned")
+    ## print("Nothing Returned")
     filterList = []
     pos1 = code[0]
     pos2 = code[1]
@@ -28,7 +28,7 @@ def blank(code,currentCodes):
     return filterList
     ## Means none of the guessed was correct
 def xRes(code,numX,currentCodes):
-    print("In x responce")
+    ## print("In x responce")
     filterList = []
     pos1 = code[0]
     pos2 = code[1]
@@ -97,14 +97,14 @@ def masterMind(currentCodes):
     currentCodes.remove(computerGuess)
 
     ## Get User's Responce
-    print("computer's guess")
-    print(computerGuess)
+    printOut = "Computer's Guess: " + repr(computerGuess)
+    print(printOut)
     res = input("CodeMaster's Responce: ")
     
     ## if nothing go to blank
     if(len(res) == 0):
         currentCodes = list(blank(computerGuess,currentCodes))
-        print(currentCodes)
+        ## print(currentCodes)
     else:
         numX, numO = parseRes(res)
 
@@ -119,12 +119,10 @@ def masterMind(currentCodes):
     ## If O values
     if(numO > 0):
         currentCodes = list(oRes(computerGuess,numO,currentCodes))
-    print(currentCodes)
+    ## print(currentCodes)
 
     return masterMind(currentCodes)
 
 ## Start Game
 print("Starting Game")
 masterMind(possibleCodes)
-
-    
