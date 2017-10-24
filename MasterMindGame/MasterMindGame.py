@@ -31,7 +31,6 @@ def oRes(code,numO):
 def masterMind(currentCodes):
     numX = 0
     numO = 0
-    code = "hello"
     ## Make Guess
     computerGuess = random.choice(currentCodes)
 
@@ -43,7 +42,7 @@ def masterMind(currentCodes):
     
     ## if nothing go to blank
     if(len(res) == 0):
-        blank(code)
+        blank(computerGuess)
     else:
         numX, numO = parseRes(res)
 
@@ -54,10 +53,10 @@ def masterMind(currentCodes):
 
     ## If X values
     if(numX > 0):
-        xRes(code,numX)
+        xRes(computerGuess,numX)
     ## If O values
     if(numO > 0):
-        oRes(code,numO)
+        oRes(computerGuess,numO)
 
     return masterMind(currentCodes)
 
