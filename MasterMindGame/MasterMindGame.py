@@ -16,33 +16,95 @@ def parseRes(res):
     return(numX,numO)
 
 
-def blank(code):
+def blank(code,currentCodes):
     print("Nothing Returned")
+    filterList = []
+    pos1 = code[0]
+    pos2 = code[1]
+    pos3 = code[2]
+    for items in currentCodes:
+        if pos1 not in items and pos2 not in items and pos3 not in items:
+            filterList.append(items)
+    return filterList
     ## Means none of the guessed was correct
-
-def xRes(code,numX):
+def xRes(code,numX,currentCodes):
     print("In x responce")
-    print(numX)
+    filterList = []
+    pos1 = code[0]
+    pos2 = code[1]
+    pos3 = code[2]
+    if(numX == 2):
+        for items in currentCodes:
+            if (pos1 == items[0] and pos2 == items[1]) or (pos1 == items[0] and pos3 == items[2]) or (pos2 == items[1] and pos3 == items[2]):
+                if items not in filterList:
+                    filterList.append(items)
+    else:
+        for items in currentCodes:
+            if (pos1 == items[0]) or (pos2 == items[1]) or (pos3 == items[2]):
+                if items not in filterList:
+                    filterList.append(items)
+    return filterList
 
-def oRes(code,numO):
-    print("In o responce")
-    print(numO)
+def oRes(code,numO,currentCodes):
+    filterList = []
+    pos1 = code[0]
+    pos2 = code[1]
+    pos3 = code[2]
+    if(numO == 3):
+        for items in currentCodes:
+            if (pos2 == items[0] and pos3 == items[1] and pos1 == items[2]) or (pos3 == items[0] and pos1 == items[1] and pos2 == items[2]):
+                if items not in filterList:
+                    filterList.append(items)
+    elif(numO == 2):
+        ## random in first pos
+        for items in currentCodes:
+            if (pos3 == items[1] and pos2 == items[2]) or (pos1 == items[1] and pos2 == items[2]) or (pos3 == items[1] and pos1 == items[2]):
+                if items not in filterList:
+                    filterList.append(items)
+        ## random in secound pos
+        for items in currentCodes:
+            if (pos3 == items[0] and pos1 == items[2]) or (pos2 == items[0] and pos1 == items[2]) or (pos3 == items[0] and pos2 == items[2]):
+                if items not in filterList:
+                    filterList.append(items)
+        ## random in third pos
+        for items in currentCodes:
+            if (pos3 == items[0] and pos1 == items[1]) or (pos2 == items[0] and pos1 == items[1]) or (pos2 == items[0] and pos3 == items[1]):
+                if items not in filterList:
+                    filterList.append(items)
+    else:
+        ## first position correct color
+        for items in currentCodes:
+            if (pos1 == items[1]) or (pos1 == items[2]):
+                if items not in filterList:
+                    filterList.append(items)
+        ## secound position correct color
+        for items in currentCodes:
+            if (pos2 == items[0]) or (pos2 == items[2]):
+                if items not in filterList:
+                    filterList.append(items)
+        ## third position correct color
+        for items in currentCodes:
+            if (pos3 == items[0]) or (pos3 == items[1]):
+                if items not in filterList:
+                    filterList.append(items)
+    return filterList
 
 def masterMind(currentCodes):
     numX = 0
     numO = 0
     ## Make Guess
     computerGuess = random.choice(currentCodes)
+    currentCodes.remove(computerGuess)
 
     ## Get User's Responce
     print("computer's guess")
     print(computerGuess)
-
-    res = input("CodeMaters Responce: ")
+    res = input("CodeMaster's Responce: ")
     
     ## if nothing go to blank
     if(len(res) == 0):
-        blank(computerGuess)
+        currentCodes = list(blank(computerGuess,currentCodes))
+        print(currentCodes)
     else:
         numX, numO = parseRes(res)
 
@@ -53,15 +115,16 @@ def masterMind(currentCodes):
 
     ## If X values
     if(numX > 0):
-        xRes(computerGuess,numX)
+        currentCodes = list(xRes(computerGuess,numX,currentCodes))
     ## If O values
     if(numO > 0):
-        oRes(computerGuess,numO)
+        currentCodes = list(oRes(computerGuess,numO,currentCodes))
+    print(currentCodes)
 
     return masterMind(currentCodes)
 
 ## Start Game
-Print("Starting Game")
+print("Starting Game")
 masterMind(possibleCodes)
 
     
